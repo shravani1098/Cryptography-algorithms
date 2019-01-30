@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+   int key, i, j;
+   char comp[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'}, pt[20], coded[20];
+   printf("Enter the Plain text and the key value:\n");
+   gets(pt);
+   scanf("%d", &key);
+   //puts(pt);
+   //printf("%d\n", key);
+   //puts(comp);
+   //printf("%c", comp[2]);
+   int len = strlen(pt);
+   //printf("%d\n", len);
+   for(i = 0; i < len; i++){
+       for(j = 0; j <=26; j++){
+           if(pt[i] == comp[j]){
+               coded[i] = comp[(j+key)%26];
+               //printf("%d %d\n",i, j);
+               break;
+           }
+       }
+   }
+   //puts(coded);
+   printf("The Cipher text is: ");
+   for(i = 0; i < len; i++){
+       printf("%c", coded[i]);
+   }
+   printf("\n");
+   
+   for(i = 0; i < len; i++){
+       for(j = 0; j < 26; j++){
+           if(coded[i] == comp[j]){
+               coded[i] = comp[(abs(j-key+26))%26];
+               
+               break;
+           }
+       }
+   }
+   printf("The Plain text obtained from the Cipher text is: ");
+   for(i = 0; i < len; i++){
+       printf("%c", coded[i]);
+   }
+   
+   return 0;
+}
